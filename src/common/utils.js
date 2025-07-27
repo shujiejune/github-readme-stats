@@ -547,25 +547,24 @@ const measureText = (str, fontSize = 10) => {
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
- * Split array of languages in two columns.
+ * Split array of languages in {numColumns} columns.
  *
  * @template T Language object.
  * @param {Array<T>} arr Array of languages.
- * @param {number} perChunk Number of languages per column.
- * @returns {Array<T>} Array of languages split in two columns.
+ * @param {number} numColumns number of columns.
+ * @returns {Array<T>} Array of languages split in given number of columns.
  */
-const chunkArray = (arr, perChunk) => {
+const chunkArray = (arr, numColumns) => {
+  const perChunk = Math.ceil(arr.length / numColumns);
+
   return arr.reduce((resultArray, item, index) => {
     const chunkIndex = Math.floor(index / perChunk);
 
     if (!resultArray[chunkIndex]) {
-      // @ts-ignore
-      resultArray[chunkIndex] = []; // start a new chunk
+      resultArray[chunkIndex] = [];
     }
 
-    // @ts-ignore
     resultArray[chunkIndex].push(item);
-
     return resultArray;
   }, []);
 };
