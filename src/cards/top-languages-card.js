@@ -110,7 +110,7 @@ const getCircleLength = (radius) => {
  * @returns {number} Card height.
  */
 const calculateCompactLayoutHeight = (totalLangs) => {
-  return COMPACT_LAYOUT_BASE_HEIGHT + Math.round(totalLangs / 2) * 25;
+  return COMPACT_LAYOUT_BASE_HEIGHT + Math.round(totalLangs / 3) * 25;
 };
 
 /**
@@ -266,7 +266,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
  */
 const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
   const longestLang = getLongestLang(langs);
-  const chunked = chunkArray(langs, langs.length / 2);
+  const chunked = chunkArray(langs, langs.length / 3);
   const layouts = chunked.map((array) => {
     // @ts-ignore
     const items = array.map((lang, index) =>
