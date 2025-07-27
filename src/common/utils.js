@@ -555,18 +555,11 @@ const lowercaseTrim = (name) => name.toLowerCase().trim();
  * @returns {Array<T>} Array of languages split in given number of columns.
  */
 const chunkArray = (arr, numColumns) => {
-  const perChunk = Math.ceil(arr.length / numColumns);
-
-  return arr.reduce((resultArray, item, index) => {
-    const chunkIndex = Math.floor(index / perChunk);
-
-    if (!resultArray[chunkIndex]) {
-      resultArray[chunkIndex] = [];
-    }
-
-    resultArray[chunkIndex].push(item);
-    return resultArray;
-  }, []);
+  const result = Array.from({ length: numColumns }, () => []);
+  arr.forEach((item, index) => {
+    result[index % numColumns].push(item); // round-robin distribution
+  });
+  return result;
 };
 
 /**
