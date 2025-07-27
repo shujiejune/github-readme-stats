@@ -266,7 +266,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
  */
 const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
   const longestLang = getLongestLang(langs);
-  const chunked = chunkArray(langs, langs.length / 3);
+  const chunked = chunkArray(langs, 3);
   const layouts = chunked.map((array) => {
     // @ts-ignore
     const items = array.map((lang, index) =>
